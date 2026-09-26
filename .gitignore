@@ -12,3 +12,6 @@ npm-debug.log*
 yarn-error.log*
 *.report.json
 *.report.md
+docs/demo-frames.json
+demo.cast
+npx-test.log
