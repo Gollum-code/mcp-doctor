@@ -1,0 +1,17 @@
+{
+  "servers": [
+    {
+      "id": "everything-remote",
+      "transport": "http",
+      "url": "https://mcp.everything.smithery.ai/",
+      "headers": {},
+      "timeoutMs": 20000
+    },
+    {
+      "id": "fixture-local",
+      "transport": "stdio",
+      "command": "node",
+      "args": ["examples/fixture-server.mjs"]
+    }
+  ]
+}

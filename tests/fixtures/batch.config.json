@@ -1,0 +1,15 @@
+{
+  "servers": [
+    {
+      "id": "one",
+      "transport": "stdio",
+      "command": "node",
+      "args": ["examples/fixture-server.mjs"]
+    },
+    {
+      "id": "two",
+      "transport": "http",
+      "url": "https://mcp.example.com/mcp"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+[{ "id": "array-server", "transport": "stdio", "command": "node", "args": ["true"] }]

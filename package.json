@@ -1,0 +1,59 @@
+{
+  "name": "mcp-doctor",
+  "version": "0.1.0",
+  "description": "Health check / smoke test / conformance report for MCP servers — the `curl` of MCP.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "testing",
+    "health-check",
+    "smoke-test",
+    "cli",
+    "ai",
+    "conformance",
+    "diagnostics"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "mcp-doctor": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "doctor": "tsx src/cli.ts",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}

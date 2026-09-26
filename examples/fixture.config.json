@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "id": "fixture",
+      "transport": "stdio",
+      "name": "mcp-doctor fixture",
+      "command": "node",
+      "args": ["examples/fixture-server.mjs"],
+      "cwd": "."
+    }
+  ]
+}
