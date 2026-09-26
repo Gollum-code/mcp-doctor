@@ -1,0 +1,47 @@
+name: "mcp-doctor"
+description: "Health check / smoke test MCP servers and fail the build when any server is unhealthy."
+author: "Gollum-code"
+
+inputs:
+  config:
+    description: "Path to a JSON config file with one or more MCP servers under `servers`."
+    required: false
+  command:
+    description: "stdio server command to test, e.g. 'npx @modelcontextprotocol/server-everything'."
+    required: false
+  url:
+    description: "http/SSE MCP server endpoint to test."
+    required: false
+  args:
+    description: "Example arguments (JSON) applied to tool calls, e.g. '{\"count\":1}'."
+    required: false
+  args-file:
+    description: "Path to a JSON file of example arguments."
+    required: false
+  timeout-ms:
+    description: "Per-tool timeout in ms (default 10000)."
+    required: false
+  max-tools:
+    description: "Limit how many tools are smoke-tested per server."
+    required: false
+  fuzz:
+    description: "Also fill optional schema properties when generating example args."
+    required: false
+    default: "false"
+  markdown:
+    description: "Write a Markdown report to this path (e.g. 'mcp-doctor-report.md')."
+    required: false
+
+outputs:
+  exit-code:
+    description: "0 = all servers healthy, 1 = at least one unhealthy, 2 = usage/config error."
+  report:
+    description: "Markdown report content (when `markdown` input is set)."
+
+runs:
+  using: "node20"
+  main: "dist/action.js"
+
+branding:
+  icon: "activity"
+  color: "blue"

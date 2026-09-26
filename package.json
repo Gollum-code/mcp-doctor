@@ -1,5 +1,5 @@
 {
-  "name": "mcp-doctor",
+  "name": "@gollum-code/mcp-doctor",
   "version": "0.1.0",
   "description": "Health check / smoke test / conformance report for MCP servers — the `curl` of MCP.",
   "keywords": [
@@ -14,6 +14,14 @@
     "diagnostics"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/Gollum-code/mcp-doctor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gollum-code/mcp-doctor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gollum-code/mcp-doctor/issues"
+  },
   "type": "module",
   "bin": {
     "mcp-doctor": "dist/cli.js"

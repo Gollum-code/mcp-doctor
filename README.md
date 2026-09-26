@@ -28,9 +28,9 @@ MCP（Model Context Protocol）生态正在爆发，但 server 质量参差：�
 ## 安装
 
 ```bash
-npm install -g mcp-doctor        # CLI 全局安装
+npm install -g @gollum-code/mcp-doctor   # CLI 全局安装
 # 或
-npx mcp-doctor --version         # 免安装直接跑
+npx @gollum-code/mcp-doctor --version    # 免安装直接跑
 ```
 
 ## 快速开始
@@ -173,7 +173,7 @@ jobs:
           node-version: 20
       - run: npm install
       - name: Smoke test local MCP servers
-        run: npx mcp-doctor servers.json --ci --markdown report.md
+        run: npx @gollum-code/mcp-doctor servers.json --ci --markdown report.md
         continue-on-error: true
       - name: Upload report
         uses: actions/upload-artifact@v4
@@ -182,6 +182,29 @@ jobs:
           path: report.md
 ```
 
+或者直接用官方 GitHub Action 封装（推荐，自带报告输出）：
+
+```yaml
+jobs:
+  mcp-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Gollum-code/mcp-doctor@v1
+        with:
+          config: servers.json          # 配置文件路径
+          markdown: mcp-report.md       # 可选：写 Markdown 报告
+          timeout-ms: 15000             # 可选：每次 tool 调用超时
+          fuzz: true                    # 可选：示例参数也填可选属性
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcp-doctor-report
+          path: mcp-report.md
+```
+
+Action 支持 `config` / `command` / `url` / `args` / `args-file` / `timeout-ms` /
+`max-tools` / `fuzz` / `markdown` 输入，并通过 `exit-code` / `report` / `report-path`
+输出给后续步骤。server 不健康时 job 失败（退出码 1），server 健康但存在警告时通过。
+
 ## Roadmap
 
 | 阶段 | 状态 | 交付 |
@@ -189,7 +212,8 @@ jobs:
 | M1 | ✅ | stdio 连接 + 握手 + tools 冒烟 + 报告表格 |
 | M2 | ✅ | schema 校验 + 耗时/超时 + `--json` / `--markdown` 导出 |
 | M3 | ✅ | HTTP/SSE 支持 + 批量 server 测试 |
-| M4 | 🚧 | README + GIF + 发布 npm |
+| M4 | ✅ | README + GitHub Action 封装（`uses: Gollum-code/mcp-doctor@v1`） |
+| M5 | 🚧 | 发布 npm（`@gollum-code/mcp-doctor`）+ 演示 GIF |
 
 ## 开发
 
