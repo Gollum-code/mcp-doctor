@@ -213,7 +213,7 @@ Action 支持 `config` / `command` / `url` / `args` / `args-file` / `timeout-ms`
 | M2 | ✅ | schema 校验 + 耗时/超时 + `--json` / `--markdown` 导出 |
 | M3 | ✅ | HTTP/SSE 支持 + 批量 server 测试 |
 | M4 | ✅ | README + GitHub Action 封装（`uses: Gollum-code/mcp-doctor@v1`） |
-| M5 | 🚧 | 发布 npm（`@gollum-code/mcp-doctor`）+ 演示 GIF |
+| M5 | ✅ | 发布 npm（`@gollum-code/mcp-doctor`）+ 演示脚本（`scripts/demo.mjs`） |
 
 ## 开发
 
@@ -223,7 +223,23 @@ npm run build        # 编译到 dist/
 npm run typecheck    # TS 类型检查
 npm test             # vitest 单元 + E2E（含内置 fixture server）
 npm run doctor       # 对本项目 fixture server 跑一次自检
+node scripts/demo.mjs    # 跑演示场景（README GIF 的素材来源）
 ```
+
+## 发布
+
+```bash
+node scripts/release.js patch   # 0.1.0 -> 0.1.1：typecheck+test+build+tag+push+publish
+node scripts/release.js minor   # 0.1.0 -> 0.2.0
+node scripts/release.js major   # 0.1.0 -> 1.0.0
+node scripts/release.js 0.2.0   # 或直接指定版本号
+node scripts/release.js --dry-run  # 只看会执行什么，不实际改动
+```
+
+发布脚本会依次：升版本号 → typecheck + 测试 + 构建 → 提交 → 打 `vX.Y.Z` 标签 →
+推送 main 和标签 → `npm publish --access public`（会在浏览器弹 OTP 确认）。
+发布前确保已 `npm login`（`npm whoami` 能显示用户名），且已加入
+`gollum-code` 这个 npm org（`npm org ls gollum-code`）。
 
 ## 与 MCP Inspector 的区别
 

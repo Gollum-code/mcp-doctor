@@ -1,5 +1,26 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
 export const NAME = "mcp-doctor";
-export const VERSION = "0.1.0";
+
+/**
+ * Read the version from package.json so a release bump never desyncs from
+ * `package.json` (single source of truth). Falls back gracefully.
+ */
+function readVersion(): string {
+  try {
+    // Resolve package.json relative to this module, walking up from dist/ or src/.
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    const pkgPath = path.resolve(here, "..", "package.json");
+    const pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as { version?: string };
+    return pkg.version ?? "0.0.0";
+  } catch {
+    return "0.0.0";
+  }
+}
+
+export const VERSION = readVersion();
 
 /** Per-tool default timeout (matches the doc's "timeout (10s)" example). */
 export const DEFAULT_TIMEOUT_MS = 10_000;

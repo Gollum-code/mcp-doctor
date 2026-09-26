@@ -49,6 +49,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "doctor": "tsx src/cli.ts",
+    "demo": "node scripts/demo.mjs",
+    "release": "node scripts/release.js",
     "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
