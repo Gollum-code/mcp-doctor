@@ -5,11 +5,15 @@
 > The `curl` of MCP: a CLI health check / smoke test / conformance report for
 > Model Context Protocol servers.
 
-[![npm version](https://img.shields.io/npm/v/mcp-doctor.svg)](https://www.npmjs.com/package/mcp-doctor)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/your-org/mcp-doctor/ci.yml?branch=main)](https://github.com/your-org/mcp-doctor/actions)
+[![npm version](https://img.shields.io/npm/v/@gollum-code/mcp-doctor.svg)](https://www.npmjs.com/package/@gollum-code/mcp-doctor)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Gollum-code/mcp-doctor/ci.yml?branch=main)](https://github.com/Gollum-code/mcp-doctor/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ---
+
+<p align="center">
+  <img src="docs/demo.gif" alt="mcp-doctor demo" width="780" />
+</p>
 
 ## 为什么需要它
 
